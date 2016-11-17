@@ -1,0 +1,40 @@
+/*
+* @package      Shortcodes
+* @description  This package holds style declarations for
+*               shortcodes page
+*/
+.icon-short-code {
+  font-size: 16px;
+}
+.icon-short-code .box__left {
+  padding-right: 10px;
+  color: black;
+}
+
+/*
+ * @subsection   Icon Box
+ */
+.icon-box {
+  position: relative;
+  padding: 10px 20px 10px 55px;
+  transition: .3s all ease;
+  border-radius: 5px;
+}
+
+.icon-box:hover {
+  color: #000;
+  background: rgba(65, 64, 66, 0.2);
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.11);
+}
+
+.icon-box:before {
+  position: absolute;
+  left: 20px;
+  font-size: 1.4em;
+  top: 5px;
+}
+@media (min-width: 992px) {
+  .icon-box:before {
+    top: 11px;
+  }
+}

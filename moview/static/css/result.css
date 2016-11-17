@@ -1,0 +1,40 @@
+div.item.poster.card div.image_content{
+    float:left;
+    width:185px;
+    margin-right:13px;
+}
+
+div.item.card{
+    width: 790px;
+    height: 278px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    margin-left: 300px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+div.item.card a.title_result{
+        color: #4d0c46;
+        font-size: 30px;
+        font-family: "Lato", sans-serif;
+        font-weight:bold;
+        margin-top: 8px;
+        
+}
+
+div.item.card a.vote_average{
+        color: #EC7063;
+        font-family: "Lato", sans-serif;
+        float:right;
+        font-size: 30px;
+        font-weight:bold;
+        margin-right: 20px;
+        margin-top: 15px;
+}
+
+div.item.card p.sub_title{
+        color: #7b68ee;
+        font-family: "Lato", sans-serif;
+        font-size: 15px;
+        font-weight:bold;
+}

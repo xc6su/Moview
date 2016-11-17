@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="wide wow-animation">
+
+<head>
+    <Script>
+        var passValid = false;
+        function passwordValidation() {
+            var pass_1 = document.getElementById("pass_id_1");
+            var pass_2 = document.getElementById("pass_id_2");
+            if (pass_1.value == pass_2.value || pass_2.value.length == 0 || pass_1.value.length == 0) {
+                document.getElementById("pass_id_2").style.outline = "none";
+                passValid = true;
+                document.getElementById("error_pass_id").style.display = "none";
+            }
+            else {
+                document.getElementById("pass_id_2").style.outline = "2px solid red";
+                passValid = false;
+                document.getElementById("error_pass_id").style.display = "inline";
+
+            }
+            if(allValid()){
+                $('#signup_btn').removeAttr("disabled");
+                $('#signup_btn').addClass("special");
+                $('#signup_btn').removeClass("noeffect");
+            }
+            else{
+                $('#signup_btn').attr("disabled", "disabled");
+                $('#signup_btn').removeClass("special");
+                $('#signup_btn').addClass("noeffect");
+            }
+        }
+
+        function allValid() {
+            var isValid = true;
+            isValid = isValid && passValid;
+            return isValid;
+        }
+    </Script>
+
+    <!-- Site Title -->
+    <title>Sign Up</title>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    <!-- Stylesheets -->
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link href='//fonts.googleapis.com/css?family=Roboto%7CLato:400,700,800' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+
+    <!--[if lt IE 10]>
+    <script src="js/html5shiv.min.js"></script>
+    <!--[endif]-->
+</head>
+<body>
+<!-- The Main Wrapper -->
+<div class="page">
+
+    <!--For older internet explorer-->
+    <div class="old-ie"
+         style='background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
+            <img src="/static/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <!--END block for older internet explorer-->
+
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+    <header class="page-header">
+        <!-- RD Navbar -->
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar" data-rd-navbar-lg="rd-navbar-static">
+                <div class="rd-navbar-inner">
+                    <!-- RD Navbar Panel -->
+                    <div class="rd-navbar-panel">
+
+                        <!-- RD Navbar Toggle -->
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar"><span></span></button>
+                        <!-- END RD Navbar Toggle -->
+
+                        <!-- RD Navbar Brand -->
+                        <div class="rd-navbar-brand">
+                            <a href="/moview/" class="brand-name">
+                                RECFILM
+                            </a>
+                        </div>
+                        
+                        <!-- END RD Navbar Brand -->
+                    </div>
+                    <!-- RD Navbar Search -->
+                    <div class="rd-navbar-search-wrap" style="position:absolute; left:650px; top:-5px;">
+                        <div class="rd-navbar-search">
+                            <form class="rd-navbar-search-form" action="{% url 'search' %}" method="GET">
+                                <label class="rd-navbar-search-form-input">
+                                    <input type="text" name="keyword" placeholder="search" autocomplete="off"/>
+                                </label>
+                                <button class="rd-navbar-search-form-submit" type="submit"></button>
+                            </form>
+                            <span class="rd-navbar-live-search-results"></span>
+                            <button class="rd-navbar-search-toggle"
+                                    data-rd-navbar-toggle=".rd-navbar-search"></button>
+                        </div>
+                    </div>
+                    <!-- END RD Navbar Search -->
+
+                    <div class="rd-navbar-nav-wrap">
+                        <!-- RD Navbar Nav -->
+                        <ul class="rd-navbar-nav">
+                            <li>
+                                <a href="/moview/signin">Sign In</a>
+                            </li>
+                            <li class="active">
+                                <a href="/moview/signup">Sign Up</a>
+                                <!-- END RD Navbar Megamenu -->
+                            </li>
+                        </ul>
+                        <!-- END RD Navbar Nav -->
+                    </div>
+                    <!-- END RD Navbar Search -->
+                </div>
+            </nav>
+        </div>
+        <!-- END RD Navbar -->
+    </header>
+
+        <article id="main">
+
+            <header class="special signup_container">
+                <span class="icon fa-desktop"></span>
+                <div class="headStyle">
+                    <h2>Sign Up</h2>
+                </div>
+            </header>
+
+            <!-- Sign Up Form -->
+            <section class="wrapper style4 special signup_container 75%">
+
+                <!-- Content -->
+                <div class="content">
+                    <form method="post" action="{% url 'signup' %}" id="signup_form">
+                        {% csrf_token %}
+                        <div class="signup_title">
+                            <strong>Account Information</strong>
+                        </div>
+
+                        <div class="signup-mid">
+                            <legend><strong>Username</strong></legend>
+                        </div>
+                        <div class="row_50">
+                            <div class="textInput">
+                                <input id="name_input" type="text" name="name" placeholder="Name" autocomplete="off" onkeyup="nameValidation()" required />
+                            </div>
+                            <div class="error" id="error_name" style="color:red; display: none;" >
+                                Please enter a valid username.
+                            </div>
+                        </div>
+
+                        <div class="signup-start" style="alignment: center;">
+                            <legend><strong>Email</strong></legend>
+                        </div>
+                        <div class="row_50">
+                            <div class="textInput">
+                                <input id="id_email" type="text" name="email" autocomplete="off" placeholder="Email" onkeyup="emailValidation()" required />
+                            </div>
+                            <div class="error" id="error_id" style="color:red; display: none;">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                        
+                        <div class="signup-mid"></div>
+                        <div class="signup-mid">
+                            <legend><strong>Password</strong></legend>
+                        </div>
+                        <div class="row_50">
+                            <div class="textInput">
+                                <input id="pass_id_1" type="password" name="password" autocomplete="off" placeholder="Password" onkeyup="passwordValidation()" required />
+                            </div>
+                        </div>
+
+                        <div class="signup-mid"></div>
+                        <div class="signup-mid">
+                            <legend><strong>Confirm Password</strong></legend>
+                        </div>
+                        <div class="row_50">
+                            <div class="textInput">
+                                <input id="pass_id_2" type="password" placeholder="Verify Password" autocomplete="off" onkeyup="passwordValidation()" required />
+                            </div>
+                            <div class="error" id="error_pass_id" style="color:red; display: none;" >
+                                Password does not match!
+                            </div>
+                        </div>
+
+                        <div class="signup-mid"></div>
+                        
+                        
+                        <div class="row_1">
+                            <div class="row_button">
+                                <ul class="buttons">
+                                    <li><input id="signup_btn" type="submit" class="noeffect" value="SIGN UP" disabled/></li>
+                                </ul>
+                            </div>
+                            <div id = "tokentest"></div>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+
+        </article>
+
+
+
+    <!--========================================================
+                              FOOTER
+    ==========================================================-->
+    <footer class="page-footer text-center text-md-left">
+        <section class="well-sm bg-secondary-1">
+            <div class="container">
+                <div class="row row-sm-justify">
+                    <!-- Brand -->
+                    <div class="col-xs-12">
+                        <a href="/moview/" class="brand-name">
+                            RecFilm
+                        </a>
+                    </div>
+                    <!-- END Brand -->
+
+                    <div class="col-xs-12 col-md-8 offset-1">
+                        <div class="row flow-offset-1 text-xs-left">
+                            
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <!-- Copyright -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="copyright">
+                            RecFilm &copy; <span id="copyright-year"></span>
+                            All rights reserved.<br class="hidden-sm">
+                            <span class="rd-navbar--switch-to-desktop"></span>
+                            <a href="#">Terms of use</a> |
+                            
+                            
+                        </p>
+
+                    </div>
+                </div>
+                <!-- END Copyright -->
+            </div>
+        </section>
+    </footer>
+</div>
+
+<!-- Core Scripts -->
+<script src="/static/js/core.min.js"></script>
+<!-- Additional Functionality Scripts -->
+<script src="/static/js/script.js"></script>
+
+
+</body>
+</html>
